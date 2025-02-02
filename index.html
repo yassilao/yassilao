@@ -3,182 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basketball - The Ultimate Sport</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Exploring China: Crimson Chronicles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        :root {
+            /* Traditional Chinese Inspired Color Palette */
+            --ink-black: #2C3E50;
+            --parchment: #F4ECD8;
+            --jade-green: #2E8B57;
+            --tea-brown: #8B4513;
+            --silk-grey: #A9A9A9;
+            --bamboo-green: #228B22;
+            --background-texture: linear-gradient(135deg, rgba(244, 236, 216, 0.9) 0%, rgba(244, 236, 216, 0.7) 100%);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f1f1f1;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background: var(--background-texture);
+            color: var(--ink-black);
+            line-height: 1.6;
+            perspective: 1000px;
             overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
-        header {
-            background: linear-gradient(45deg, #ff4e50, #f9d423);
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            background-size: 300% 300%;
-            animation: gradientAnimation 8s ease infinite;
-        }
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        h1 {
-            font-size: 4em;
-            margin: 0;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-        }
-        p {
-            font-size: 1.2em;
-            font-weight: 300;
-            margin-top: 20px;
-            letter-spacing: 1px;
-        }
-        .content {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        .section-title {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            color: #ff4e50;
-            border-bottom: 4px solid #ff4e50;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .article {
-            text-align: justify;
-            line-height: 1.8;
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        .img-container {
-            text-align: center;
-            margin: 30px 0;
-            transition: transform 0.3s ease-in-out;
-        }
-        .img-container img {
-            width: 60%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        .img-container:hover {
-            transform: scale(1.05);
-        }
-        .extra-info {
-            background-color: #f7f7f7;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .extra-info h3 {
-            color: #ff4e50;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 1.2em;
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            bottom: 0;
+            background: transparent;
+        }
+
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 900px;
+            background-color: rgba(244, 236, 216, 0.9);
+            border: 2px solid var(--tea-brown);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 40px;
+            opacity: 0;
+            transform: scale(0.9) rotateX(45deg);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) rotateX(0);
+            z-index: 10;
+        }
+
+        .slide-sticker {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 40px;
+            opacity: 0.7;
+            transform: rotate(15deg);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-image {
             width: 100%;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 3px solid var(--jade-green);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
-        footer a {
-            color: #ff4e50;
-            text-decoration: none;
+
+        .slide-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+
+        .slide h1, .slide h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--tea-brown);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
             font-weight: 600;
+            margin-bottom: 20px;
         }
-        footer a:hover {
-            text-decoration: underline;
+
+        .slide p {
+            color: var(--ink-black);
+            margin-bottom: 25px;
+            max-width: 700px;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .slide ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .slide ul li {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: var(--ink-black);
+            padding: 15px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--bamboo-green);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .slide ul li:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translateX(10px);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            display: flex;
+            gap: 20px;
+            z-index: 20;
+        }
+
+        .navigation button {
+            background-color: var(--jade-green);
+            color: var(--parchment);
+            border: 2px solid var(--tea-brown);
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .navigation button:hover {
+            background-color: var(--tea-brown);
+            transform: translateY(-3px);
+        }
+
+        .fullscreen-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--bamboo-green);
+            color: var(--parchment);
+            border: 2px solid var(--tea-brown);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        .fullscreen-toggle:hover {
+            background-color: var(--tea-brown);
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Fullscreen Styles */
+        #presentation-container:-webkit-full-screen {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: var(--background-texture);
+        }
+
+        #presentation-container:-moz-full-screen {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: var(--background-texture);
+        }
+
+        #presentation-container:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: var(--background-texture);
+
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Basketball - The Ultimate Sport</h1>
-        <p>this search by yassin laouid</p>
-    </header>
+    <button class="fullscreen-toggle" onclick="toggleFullScreen()" title="Toggle Fullscreen">
+        <i class="fas fa-expand"></i>
+    </button>
 
-    <div class="content">
-        <div class="intro">
-            <div class="section-title">What is Basketball?</div>
-            <div class="article">
-                <p>Basketball is a fast-paced, action-packed team sport where two teams of five players compete to score points by throwing the ball through the opposing team’s hoop. Known for its high-energy gameplay, basketball has become a favorite sport worldwide.</p>
-                <p>With its exciting plays, slam dunks, and three-point shots, basketball is one of the most visually engaging sports to both play and watch. It combines athleticism, strategy, and teamwork.</p>
-            </div>
-            <div class="img-container">
-                <img src="https://hdqwalls.com/wallpapers/basketball-hd.jpg" alt="Basketball Action">
-            </div>
-            <div class="extra-info">
-                <h3>Why is Basketball so Popular?</h3>
-                <p>Basketball is popular for many reasons: it’s accessible, requires minimal equipment, and can be played indoors or outdoors. The fast pace and constant action keep fans on the edge of their seats, while its global reach makes it a universal sport that brings people together.</p>
-            </div>
+    <div id="presentation-container" class="presentation">
+        <div id="slide1" class="slide active">
+            <div class="slide-sticker">🐉</div>
+            <img src="https://images.pexels.com/photos/734102/pexels-photo-734102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="China Landscape" class="slide-image">
+            <h1>Crimson Chronicles: China Unveiled</h1>
+            <p>A journey through the depths of Chinese civilization, painted in shades of passion and history</p>
         </div>
-
-        <div class="history">
-            <div class="section-title">History of Basketball</div>
-            <div class="article">
-                <p>Basketball was invented by Dr. James Naismith in 1891 in Springfield, Massachusetts, USA. His goal was to create a game that would keep students active indoors during the winter. What started as a simple game with a soccer ball and a peach basket has now become one of the most popular sports in the world.</p>
-                <p>Since its invention, basketball has evolved with the introduction of professional leagues like the NBA, which has helped shape the modern game we see today.</p>
-            </div>
-            <div class="img-container">
-                <img src="https://th.bing.com/th/id/R.9747b0df4b161b9a95223d8e4090eb5f?rik=H3ZnzAAQCk%2b4Dw&pid=ImgRaw&r=0" alt="History of Basketball">
-            </div>
-            <div class="extra-info">
-                <h3>The Rise of the NBA</h3>
-                <p>The NBA, founded in 1946, played a major role in globalizing basketball. From legends like Michael Jordan and Magic Johnson to current stars like LeBron James and Stephen Curry, the NBA has produced some of the most iconic players in sports history.</p>
-            </div>
+        
+        <div id="slide2" class="slide">
+            <div class="slide-sticker">🏔️</div>
+            <img src="https://images.pexels.com/photos/1586205/pexels-photo-1586205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Landscape" class="slide-image">
+            <h2>Landscapes of Legend</h2>
+            <p>Majestic terrains that have witnessed millennia of human drama and natural wonder</p>
+            <ul>
+                <li>🗺️ Vast Realm: 9.6 million square kilometers of untold stories</li>
+                <li>🏞️ Diverse Landscapes: From misty peaks to ancient plains</li>
+                <li>🌊 Legendary Rivers: Yangtze and Yellow - arteries of civilization</li>
+            </ul>
         </div>
-
-        <div class="how-to-play">
-            <div class="section-title">How to Play Basketball</div>
-            <div class="article">
-                <p>Basketball is played on a rectangular court with two teams of five players each. The goal is to score points by making a shot through the hoop, which is 10 feet above the ground. Players must dribble the ball while moving, pass to teammates, and attempt to score. The opposing team plays defense to stop them from scoring.</p>
-            </div>
-            <div class="img-container">
-                <img src="https://images.inc.com/uploaded_files/image/1920x1080/getty_93909547_9706479704500159_62319.jpg" alt="Basketball Game">
-            </div>
-            <div class="extra-info">
-                <h3>Basic Basketball Positions</h3>
-                <p>Basketball players typically play one of five positions: Point Guard, Shooting Guard, Small Forward, Power Forward, or Center. Each position has specific responsibilities, but all players need to have strong skills in dribbling, passing, and shooting.</p>
-            </div>
+        
+        <div id="slide3" class="slide">
+            <div class="slide-sticker">🏺</div>
+            <img src="https://images.pexels.com/photos/33266/work-chinese-industrial-professional.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Historical Artifacts" class="slide-image">
+            <h2>Echoes of Dynasties</h2>
+            <p>A tapestry of empires, woven with threads of wisdom, conflict, and transformation</p>
+            <ul>
+                <li>👑 Imperial Legacies: From Xia to Qing, each dynasty a chapter of legend</li>
+                <li>💡 Revolutionary Innovations: Inventions that changed the world</li>
+                <li>🧘 Philosophical Depths: Harmony of thought through centuries</li>
+            </ul>
         </div>
-
-        <div class="rules">
-            <div class="section-title">Basketball Rules</div>
-            <div class="article">
-                <ul>
-                    <li><strong>Time:</strong> Games consist of four quarters, each lasting 12 minutes in professional play (NBA).</li>
-                    <li><strong>Scoring:</strong> A field goal is worth 2 points, or 3 points if made from beyond the three-point arc. Free throws are worth 1 point each.</li>
-                    <li><strong>Fouls:</strong> Players can commit personal fouls. After a certain number of fouls, players may be disqualified from the game.</li>
-                    <li><strong>Dribbling:</strong> Players must dribble the ball while moving. Traveling (moving without dribbling) is a violation.</li>
-                </ul>
-            </div>
+        
+        <div id="slide4" class="slide">
+            <div class="slide-sticker">🚀</div>
+            <img src="https://images.pexels.com/photos/275289/pexels-photo-275289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Modern Chinese City" class="slide-image">
+            <h2>Forge of the Future</h2>
+            <p>Where ancient wisdom ignites the flames of technological revolution</p>
+            <ul>
+                <li>💼 Economic Titan: Reshaping global economic landscapes</li>
+                <li>🤖 Technological Frontier: Pioneering the next era of innovation</li>
+                <li>🌐 Global Influence: Connecting worlds, bridging civilizations</li>
+            </ul>
+        </div>
+        
+        <div id="slide5" class="slide">
+            <div class="slide-sticker">🎨</div>
+            <img src="https://images.pexels.com/photos/2915957/pexels-photo-2915957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Culture" class="slide-image">
+            <h2>Cultural Inferno</h2>
+            <p>A blazing mosaic of traditions, arts, and expressions that defy time and boundaries</p>
+            <ul>
+                <li>🏯 Iconic Monuments: Testaments to human creativity and resilience</li>
+                <li>✍️ Artistic Traditions: Brushstrokes of cultural immortality</li>
+                <li>🥢 Culinary Alchemy: Flavors that tell stories of generations</li>
+            </ul>
+        </div>
+        
+        <div class="navigation">
+            <button onclick="changeSlide(-1)">Previous</button>
+            <button onclick="changeSlide(1)">Next</button>
         </div>
     </div>
 
-    <footer>
-        <p><p><center>by yassin laouid or yassi lao😊</center></p></p>
-        <p><center>🙏one thing dima raja and hala madrid🙏</center></p>
-    </footer>
+    <script>
+        function toggleFullScreen() {
+            const container = document.getElementById('presentation-container');
+            const fullscreenIcon = document.querySelector('.fullscreen-toggle i');
+
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.mozRequestFullScreen) {
+                    container.mozRequestFullScreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                fullscreenIcon.classList.remove('fa-expand');
+                fullscreenIcon.classList.add('fa-compress');
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                fullscreenIcon.classList.remove('fa-compress');
+                fullscreenIcon.classList.add('fa-expand');
+            }
+        }
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
 </body>
 </html>
